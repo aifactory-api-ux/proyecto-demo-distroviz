@@ -11,7 +11,7 @@ from typing import Generator
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
-from backend.app.models import Base
+from app.models import Base
 
 # Database configuration
 DATABASE_URL = os.getenv(

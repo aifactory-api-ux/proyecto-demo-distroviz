@@ -12,7 +12,7 @@ from typing import List, Optional
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
-from backend.app.models import (
+from app.models import (
     DistributionOrderDB,
     DistributionOrder,
     DistributionOrderCreate,

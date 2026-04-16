@@ -12,8 +12,8 @@ from typing import Generator, Optional
 import redis
 from sqlalchemy.orm import Session
 
-from backend.app.db import SessionLocal
-from backend.app.cache import get_redis_client
+from app.db import SessionLocal
+from app.cache import get_redis_client
 
 
 # Required environment variables for the application (all optional with defaults)

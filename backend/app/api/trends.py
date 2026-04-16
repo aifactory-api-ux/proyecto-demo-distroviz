@@ -11,9 +11,9 @@ from typing import Optional
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
-from backend.app.crud import get_trends
-from backend.app.dependencies import get_db
-from backend.app.models import TrendResponse
+from app.crud import get_trends
+from app.dependencies import get_db
+from app.models import TrendResponse
 
 router = APIRouter(prefix="/api/trends", tags=["trends"])
 

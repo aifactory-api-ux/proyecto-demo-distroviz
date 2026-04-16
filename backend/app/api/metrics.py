@@ -9,10 +9,10 @@ Includes Redis caching for improved performance.
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from backend.app.crud import get_metrics
-from backend.app.dependencies import get_db, get_cache, get_cache_ttl_metrics
-from backend.app.cache import METRICS_CACHE_PREFIX, get_cached_metrics, cache_metrics
-from backend.app.models import Metric
+from app.crud import get_metrics
+from app.dependencies import get_db, get_cache, get_cache_ttl_metrics
+from app.cache import METRICS_CACHE_PREFIX, get_cached_metrics, cache_metrics
+from app.models import Metric
 
 router = APIRouter(prefix="/api/metrics", tags=["metrics"])
 
