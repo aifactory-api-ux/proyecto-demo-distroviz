@@ -139,7 +139,7 @@ print_status "Waiting for frontend to be healthy..."
 frontend_attempts=0
 max_frontend_attempts=30
 while [ $frontend_attempts -lt $max_frontend_attempts ]; do
-    if curl -s http://localhost:5173 > /dev/null 2>&1; then
+    if curl -s http://localhost > /dev/null 2>&1; then
         print_success "Frontend is healthy"
         break
     fi
