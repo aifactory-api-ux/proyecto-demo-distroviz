@@ -53,7 +53,7 @@ export function useTrends(options: UseTrendsOptions = {}): UseQueryResult<TrendR
   } = options;
 
   // Build query parameters object
-  const params: GetTrendsParams = {};
+  const params: TrendQueryParams = {};
   if (fromDate) {
     params.from_date = fromDate;
   }

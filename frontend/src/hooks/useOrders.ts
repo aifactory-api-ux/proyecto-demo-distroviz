@@ -133,8 +133,7 @@ export function useOrders(
       const paginatedData = data.slice(start, start + pagination.limit);
       return paginatedData;
     },
-    staleTime: 30 * 1000, // 30 seconds
-    keepPreviousData: true, // Keep previous data while fetching new page
+    staleTime: 30 * 1000,
   });
   
   // Fetch single order by ID
