@@ -134,21 +134,21 @@ if [ $backend_attempts -eq $max_backend_attempts ]; then
     exit 1
 fi
 
-# Wait for frontend to be healthy
-print_status "Waiting for frontend to be healthy..."
-frontend_attempts=0
-max_frontend_attempts=30
-while [ $frontend_attempts -lt $max_frontend_attempts ]; do
-    if curl -s http://localhost > /dev/null 2>&1; then
-        print_success "Frontend is healthy"
+# Wait for nginx proxy to be healthy
+print_status "Waiting for nginx proxy to be healthy..."
+nginx_attempts=0
+max_nginx_attempts=30
+while [ $nginx_attempts -lt $max_nginx_attempts ]; do
+    if curl -s http://localhost/nginx-health > /dev/null 2>&1; then
+        print_success "Nginx proxy is healthy"
         break
     fi
-    frontend_attempts=$((frontend_attempts + 1))
+    nginx_attempts=$((nginx_attempts + 1))
     sleep 2
 done
 
-if [ $frontend_attempts -eq $max_frontend_attempts ]; then
-    print_warning "Frontend may not be fully ready yet, but continuing..."
+if [ $nginx_attempts -eq $max_nginx_attempts ]; then
+    print_warning "Nginx proxy may not be fully ready yet, but continuing..."
 fi
 
 # Print access information
@@ -157,9 +157,9 @@ echo "=========================================="
 print_success "DistroViz is running!"
 echo "=========================================="
 echo ""
-echo -e "${GREEN}Dashboard:${NC}       http://localhost"
-echo -e "${GREEN}Backend API:${NC}     http://localhost/api"
-echo -e "${GREEN}Backend Docs:${NC}    http://localhost/docs"
+echo -e "${GREEN}Dashboard:${NC}       http://localhost:80"
+echo -e "${GREEN}Backend API:${NC}     http://localhost:8000"
+echo -e "${GREEN}Backend Docs:${NC}    http://localhost:8000/docs"
 echo -e "${GREEN}Redis:${NC}           localhost:6379"
 echo ""
 echo "To stop the services, run: $DOCKER_COMPOSE down"
