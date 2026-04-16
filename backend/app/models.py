@@ -93,38 +93,6 @@ class DistributionOrderDB(Base):
         )
 
 
-class Plant(Base):
-    """SQLAlchemy ORM model for plants (manufacturing locations)."""
-    __tablename__ = "plants"
-
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    name = Column(String(200), unique=True, nullable=False)
-    location = Column(String(200), nullable=False)
-    code = Column(String(20), unique=True, nullable=False, index=True)
-    capacity = Column(Integer, nullable=True)
-    is_active = Column(Integer, default=1, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
-
-
-class DistributionCenter(Base):
-    """SQLAlchemy ORM model for distribution centers."""
-    __tablename__ = "distribution_centers"
-
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    name = Column(String(200), unique=True, nullable=False)
-    location = Column(String(200), nullable=False)
-    code = Column(String(20), unique=True, nullable=False, index=True)
-    capacity = Column(Integer, nullable=True)
-    region = Column(String(100), nullable=True, index=True)
-    is_active = Column(Integer, default=1, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
-
-
-# Health check response model
-
-
 class HealthResponse(BaseModel):
     """Pydantic model for health check response."""
     status: str
