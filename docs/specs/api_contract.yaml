@@ -1,0 +1,166 @@
+# API_CONTRACT.md
+
+## 1. Get Dashboard Metrics
+
+| Method | Path           | Auth Required | Request Body | Query Params | Response Body Schema | Status Codes |
+|--------|----------------|--------------|--------------|-------------|---------------------|-------------|
+| GET    | /api/metrics   | No           | None         | None        | Metric              | 200         |
+
+**Response Schema (`Metric`):**
+```json
+{
+  "total_orders": 120,
+  "total_quantity": 3500,
+  "delivered_orders": 90,
+  "pending_orders": 30
+}
+```
+
+---
+
+## 2. List Distribution Orders (with optional filters)
+
+| Method | Path         | Auth Required | Request Body | Query Params                      | Response Body Schema         | Status Codes |
+|--------|--------------|--------------|--------------|-----------------------------------|-----------------------------|-------------|
+| GET    | /api/orders  | No           | None         | from_date (ISO date, optional)<br>to_date (ISO date, optional)<br>status (string, optional) | List of DistributionOrder    | 200         |
+
+**Response Schema (`List[DistributionOrder]`):**
+```json
+[
+  {
+    "id": 1,
+    "order_number": "ORD-20240401-001",
+    "product_name": "Producto A",
+    "quantity": 100,
+    "destination": "CDMX",
+    "status": "delivered",
+    "shipped_at": "2024-04-01T10:00:00Z",
+    "delivered_at": "2024-04-02T15:00:00Z"
+  }
+]
+```
+
+---
+
+## 3. Create Distribution Order
+
+| Method | Path         | Auth Required | Request Body Schema         | Query Params | Response Body Schema      | Status Codes |
+|--------|--------------|--------------|----------------------------|--------------|--------------------------|-------------|
+| POST   | /api/orders  | No           | DistributionOrderCreate     | None         | DistributionOrder        | 201         |
+
+**Request Schema (`DistributionOrderCreate`):**
+```json
+{
+  "order_number": "ORD-20240401-002",
+  "product_name": "Producto B",
+  "quantity": 200,
+  "destination": "Monterrey",
+  "status": "pending",
+  "shipped_at": null,
+  "delivered_at": null
+}
+```
+
+**Response Schema (`DistributionOrder`):**
+```json
+{
+  "id": 2,
+  "order_number": "ORD-20240401-002",
+  "product_name": "Producto B",
+  "quantity": 200,
+  "destination": "Monterrey",
+  "status": "pending",
+  "shipped_at": null,
+  "delivered_at": null
+}
+```
+
+---
+
+## 4. Get Distribution Order by ID
+
+| Method | Path               | Auth Required | Request Body | Query Params | Response Body Schema   | Status Codes |
+|--------|--------------------|--------------|--------------|--------------|-----------------------|-------------|
+| GET    | /api/orders/{id}   | No           | None         | None         | DistributionOrder     | 200         |
+
+**Response Schema (`DistributionOrder`):**
+```json
+{
+  "id": 1,
+  "order_number": "ORD-20240401-001",
+  "product_name": "Producto A",
+  "quantity": 100,
+  "destination": "CDMX",
+  "status": "delivered",
+  "shipped_at": "2024-04-01T10:00:00Z",
+  "delivered_at": "2024-04-02T15:00:00Z"
+}
+```
+
+---
+
+## 5. Update Distribution Order
+
+| Method | Path               | Auth Required | Request Body Schema         | Query Params | Response Body Schema   | Status Codes |
+|--------|--------------------|--------------|----------------------------|--------------|-----------------------|-------------|
+| PUT    | /api/orders/{id}   | No           | DistributionOrderCreate     | None         | DistributionOrder     | 200         |
+
+**Request Schema (`DistributionOrderCreate`):**
+```json
+{
+  "order_number": "ORD-20240401-003",
+  "product_name": "Producto C",
+  "quantity": 150,
+  "destination": "Guadalajara",
+  "status": "pending",
+  "shipped_at": null,
+  "delivered_at": null
+}
+```
+
+**Response Schema (`DistributionOrder`):**
+```json
+{
+  "id": 3,
+  "order_number": "ORD-20240401-003",
+  "product_name": "Producto C",
+  "quantity": 150,
+  "destination": "Guadalajara",
+  "status": "pending",
+  "shipped_at": null,
+  "delivered_at": null
+}
+```
+
+---
+
+## 6. Delete Distribution Order
+
+| Method | Path               | Auth Required | Request Body | Query Params | Response Body Schema         | Status Codes |
+|--------|--------------------|--------------|--------------|--------------|-----------------------------|-------------|
+| DELETE | /api/orders/{id}   | No           | None         | None         | { "success": true }         | 200         |
+
+**Response Schema:**
+```json
+{
+  "success": true
+}
+```
+
+---
+
+## 7. Get Trend Data
+
+| Method | Path         | Auth Required | Request Body | Query Params                      | Response Body Schema   | Status Codes |
+|--------|--------------|--------------|--------------|-----------------------------------|-----------------------|-------------|
+| GET    | /api/trends  | No           | None         | from_date (ISO date, optional)<br>to_date (ISO date, optional) | TrendResponse         | 200         |
+
+**Response Schema (`TrendResponse`):**
+```json
+{
+  "trend": [
+    { "date": "2024-04-01", "delivered": 10, "pending": 5 },
+    { "date": "2024-04-02", "delivered": 15, "pending": 3 }
+  ]
+}
+```

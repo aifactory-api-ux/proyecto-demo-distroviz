@@ -1,0 +1,10 @@
+/* Minimal CSS for DistroViz frontend */
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f8fafc;
+  color: #222;
+}
+#root {
+  min-height: 100vh;
+}
