@@ -4,8 +4,8 @@
  */
 
 import { format, parseISO, isValid, differenceInDays, isAfter, isBefore, startOfDay, endOfDay } from 'date-fns';
-import es from 'date-fns/locale/es';
-import enUS from 'date-fns/locale/en-US';
+import { es } from 'date-fns/locale/es';
+import { enUS } from 'date-fns/locale/en-US';
 
 // Supported locales
 type LocaleType = 'es' | 'en';
