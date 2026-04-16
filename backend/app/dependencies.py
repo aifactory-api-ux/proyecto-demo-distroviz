@@ -13,7 +13,7 @@ import redis
 from sqlalchemy.orm import Session
 
 from backend.app.db import SessionLocal
-from backend.app.cache import get_redis_client, RedisClientManager
+from backend.app.cache import get_redis_client
 
 
 # Required environment variables for the application

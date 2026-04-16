@@ -8,9 +8,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <App />
   </React.StrictMode>
 );
-
-export default Main;
-
-function Main() {
-  console.log('DistroViz frontend initialized');
-}
