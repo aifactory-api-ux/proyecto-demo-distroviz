@@ -11,19 +11,26 @@ from typing import Any, Optional
 
 import redis
 
-# Redis configuration
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
-
 # Cache key prefixes
 METRICS_CACHE_PREFIX = "metrics:"
 
 # Redis client singleton
 _redis_client = None
 
-def get_redis_client():
+
+def get_redis_client(host: str = "localhost", port: int = 6379, db: int = 0,
+                     password: Optional[str] = None, timeout: int = 5):
     global _redis_client
     if _redis_client is None:
-        _redis_client = redis.Redis.from_url(REDIS_URL, decode_responses=True)
+        _redis_client = redis.Redis(
+            host=host,
+            port=port,
+            db=db,
+            password=password,
+            socket_timeout=timeout,
+            socket_connect_timeout=timeout,
+            decode_responses=True
+        )
     return _redis_client
 
 
