@@ -1,11 +1,5 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import Dashboard from './components/Dashboard';
-import { getMetrics } from './api/metrics';
-import { getTrends } from './api/trends';
-import { getOrders } from './api/orders';
-import { TrendResponse, Metric } from './types';
 
 /**
  * App Component - Root component for DistroViz Dashboard
