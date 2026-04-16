@@ -48,18 +48,4 @@ def init_db() -> None:
     Base.metadata.create_all(bind=engine)
 
 
-def get_db() -> Generator[Session, None, None]:
-    """
-    Dependency that provides a database session.
-    
-    Creates a new session for each request and ensures it is
-    properly closed after the request is completed.
-    
-    Yields:
-        Session: SQLAlchemy database session.
-    """
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+

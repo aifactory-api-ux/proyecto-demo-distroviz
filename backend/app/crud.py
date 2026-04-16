@@ -229,11 +229,11 @@ def get_trends(
     Returns:
         List of TrendPoint objects with daily aggregated data.
     """
-    # Default date range: last 30 days
+    # Default date range: last 90 days to show meaningful trends
     if not from_date:
-        from_date = date.today()
+        from_date = date(2024, 1, 1)
     if not to_date:
-        to_date = date.today()
+        to_date = date(2024, 12, 31)
     
     # Query orders within date range
     query = db.query(DistributionOrderDB).filter(
