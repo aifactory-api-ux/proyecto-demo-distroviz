@@ -5,7 +5,7 @@
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { TrendResponse, TrendPoint } from '../types';
-import { getTrends } from '../api/trends';
+import { getTrends, TrendQueryParams } from '../api/trends';
 
 /**
  * Query key factory for trend-related queries
@@ -14,7 +14,7 @@ import { getTrends } from '../api/trends';
 export const trendKeys = {
   all: ['trends'] as const,
   lists: () => [...trendKeys.all, 'list'] as const,
-  list: (filters: GetTrendsParams) => [...trendKeys.lists(), filters] as const,
+  list: (filters: TrendQueryParams) => [...trendKeys.lists(), filters] as const,
   details: () => [...trendKeys.all, 'detail'] as const,
   detail: (id: number) => [...trendKeys.details(), id] as const,
 };
