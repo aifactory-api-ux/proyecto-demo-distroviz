@@ -11,7 +11,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.app.api import orders_router, metrics_router, trends_router
+from app.api import orders_router, metrics_router, trends_router
 from app.crud import seed_initial_data
 from app.db import SessionLocal, init_db
 from app.models import HealthResponse
@@ -123,7 +123,7 @@ def root():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
-        "backend.app.main:app",
+        "app.main:app",
         host="0.0.0.0",
         port=8000,
         reload=True
