@@ -19,14 +19,6 @@ const apiClient = axios.create({
 });
 
 /**
- * Response wrapper for API responses
- */
-interface ApiResponse<T> {
-  data: T;
-  status: number;
-}
-
-/**
  * Fetch dashboard metrics from the backend
  * Returns aggregated metrics including total orders, quantities, and status counts
  * 
