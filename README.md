@@ -57,12 +57,15 @@ docker compose ps
 
 ## Services
 
-| Service       | Port | URL                           |
-|---------------|------|-------------------------------|
-| Nginx Proxy   | 80   | http://localhost              |
-| Backend API   | 8000 | http://localhost:8000         |
-| Frontend      | 5173 | http://localhost:5173         |
-| Redis         | 6379 | localhost:6379               |
+| Service       | Port  | URL                            |
+|---------------|-------|--------------------------------|
+| Nginx Proxy   | 3080  | http://localhost:3080          |
+| Backend API   | 8010  | http://localhost:8010          |
+| Frontend      | (via nginx) | http://localhost:3080      |
+| Redis         | 6380  | localhost:6380                 |
+
+Note: Port 80 is commonly occupied. The Nginx proxy is exposed on port 3080 by default.
+To use standard port 80, ensure the port is available and update `docker-compose.yml`.
 
 
 ## API Endpoints
@@ -86,8 +89,8 @@ docker compose ps
 ## API Documentation
 
 Interactive API documentation is available at:
-- Swagger UI: http://localhost/docs
-- ReDoc: http://localhost/redoc
+- Swagger UI: http://localhost:3080/docs
+- ReDoc: http://localhost:3080/redoc
 
 ## Environment Variables
 
@@ -171,7 +174,7 @@ docker compose exec frontend sh
 
 ### Services won't start
 1. Check Docker daemon is running: `docker info`
-2. Check ports are available: `netstat -tulpn | grep -E '80|8000|5173|6379'`
+2. Check ports are available: `netstat -tulpn | grep -E '3080|8010|6380'`
 3. View logs: `docker compose logs`
 
 ### Backend healthcheck fails
