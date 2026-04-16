@@ -19,7 +19,7 @@ COPY backend/app ./app
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
-ENV DATABASE_URL=sqlite:///./distroviz.db
+ENV DATABASE_URL=sqlite:///./data/distroviz.db
 ENV REDIS_HOST=redis
 ENV REDIS_PORT=6379
 
