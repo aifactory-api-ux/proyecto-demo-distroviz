@@ -71,7 +71,7 @@ services:
       dockerfile: Dockerfile
     container_name: distroviz-nginx
     ports:
-      - "80:80"
+      - "3080:80"
     depends_on:
       backend:
         condition: service_healthy
