@@ -6,6 +6,7 @@ routers, sets up health checks, and seeds initial data on startup.
 """
 
 import logging
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI

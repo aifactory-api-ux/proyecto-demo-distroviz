@@ -43,15 +43,18 @@ def get_dashboard_metrics(
     """
     cache_key = f"{METRICS_CACHE_PREFIX}all"
     
-    # Try to get from cache first
-    cached_data = get_cached_metrics(cache, cache_key)
-    if cached_data is not None:
-        return Metric(**cached_data)
+    try:
+        cached_data = get_cached_metrics(cache, cache_key)
+        if cached_data is not None:
+            return Metric(**cached_data)
+    except Exception:
+        pass
     
-    # Cache miss - calculate metrics from database
     metrics = get_metrics(db)
     
-    # Store in cache for future requests
-    cache_metrics(cache, cache_key, metrics.model_dump(), cache_ttl)
+    try:
+        cache_metrics(cache, cache_key, metrics.model_dump(), cache_ttl)
+    except Exception:
+        pass
     
     return metrics

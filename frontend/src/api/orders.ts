@@ -13,14 +13,8 @@ import type {
   DistributionOrderFilter,
 } from '../types';
 
-// Get API base URL from Vite environment variable
-// Fallback to localhost for development
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-/**
- * Creates an axios instance with default configuration
- * Includes base URL, timeout, and headers
- */
 const apiClient = axios.create({
   baseURL: `${API_BASE_URL}/api`,
   timeout: 10000,
