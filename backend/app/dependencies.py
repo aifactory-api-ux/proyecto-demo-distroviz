@@ -16,12 +16,8 @@ from backend.app.db import SessionLocal
 from backend.app.cache import get_redis_client
 
 
-# Required environment variables for the application
-REQUIRED_ENV_VARS = [
-    "DATABASE_URL",
-    "REDIS_HOST",
-    "REDIS_PORT",
-]
+# Required environment variables for the application (all optional with defaults)
+REQUIRED_ENV_VARS = []
 
 # Optional environment variables with defaults
 OPTIONAL_ENV_VARS = {
@@ -122,25 +118,22 @@ def get_db() -> Generator[Session, None, None]:
         db.close()
 
 
-def get_cache() -> RedisClientManager:
+def get_cache():
     """
-    Dependency that provides a Redis client manager.
+    Dependency that provides a Redis client.
     
-    Returns a context manager that handles Redis connection
-    lifecycle. The connection is automatically closed when
-    the context exits.
+    Returns a Redis client for caching operations.
     
     Returns:
-        RedisClientManager: Context manager for Redis operations.
-    
-    Example:
-        @app.get("/metrics")
-        def get_metrics(cache: RedisClientManager = Depends(get_cache)):
-            with cache as redis_client:
-                cached = redis_client.get("metrics")
+        Redis client instance.
     """
-    redis_config = settings.get_redis_config()
-    return get_redis_client(redis_config)
+    return get_redis_client(
+        host=settings.redis_host,
+        port=settings.redis_port,
+        db=settings.redis_db,
+        password=settings.redis_password,
+        timeout=settings.redis_timeout
+    )
 
 
 def get_cache_ttl_metrics() -> int:
