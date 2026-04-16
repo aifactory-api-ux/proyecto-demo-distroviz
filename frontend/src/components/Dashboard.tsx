@@ -468,9 +468,9 @@ export default function Dashboard() {
     data: metrics,
     isLoading: metricsLoading,
     error: metricsError,
-  } = useQuery<Metric>({
+  } = useQuery({
     queryKey: ['metrics'],
-    queryFn: getMetricsApi,
+    queryFn: () => getMetricsApi(),
     staleTime: 5 * 60 * 1000,
   });
 
@@ -478,9 +478,9 @@ export default function Dashboard() {
     data: trends,
     isLoading: trendsLoading,
     error: trendsError,
-  } = useQuery<TrendResponse>({
+  } = useQuery({
     queryKey: ['trends'],
-    queryFn: getTrendsApi,
+    queryFn: () => getTrendsApi(),
     staleTime: 5 * 60 * 1000,
   });
 
@@ -488,9 +488,9 @@ export default function Dashboard() {
     data: orders,
     isLoading: ordersLoading,
     error: ordersError,
-  } = useQuery<DistributionOrder[]>({
+  } = useQuery({
     queryKey: ['orders'],
-    queryFn: getOrders,
+    queryFn: () => getOrders(),
     staleTime: 2 * 60 * 1000,
   });
 
