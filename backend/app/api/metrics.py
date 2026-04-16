@@ -52,6 +52,6 @@ def get_dashboard_metrics(
     metrics = get_metrics(db)
     
     # Store in cache for future requests
-    cache_metrics(cache, cache_key, metrics.model_copy(), cache_ttl)
+    cache_metrics(cache, cache_key, metrics.model_dump(), cache_ttl)
     
     return metrics
