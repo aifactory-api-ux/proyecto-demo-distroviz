@@ -6,12 +6,10 @@
 import axios from 'axios';
 import { Metric } from '../types';
 
-// Get API URL from environment variables
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-// Create axios instance with base configuration
 const apiClient = axios.create({
-  baseURL: API_URL,
+  baseURL: `${API_BASE_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -27,7 +25,7 @@ const apiClient = axios.create({
  */
 export async function getMetrics(): Promise<Metric> {
   try {
-    const response = await apiClient.get<Metric>('/api/metrics');
+    const response = await apiClient.get<Metric>('/metrics');
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
