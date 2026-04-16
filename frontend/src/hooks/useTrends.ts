@@ -23,20 +23,11 @@ export const trendKeys = {
  * Hook configuration options for useTrends
  */
 export interface UseTrendsOptions {
-  /** Start date for filtering trends (ISO date string) */
   fromDate?: string;
-  /** End date for filtering trends (ISO date string) */
   toDate?: string;
-  /** Enable/disable the query (default: true) */
   enabled?: boolean;
-  /** Time in milliseconds before the query is considered stale (default: 5 minutes) */
   staleTime?: number;
-  /** Number of retry attempts on error (default: 3) */
   retry?: number | boolean;
-  /** Callback when data is successfully fetched */
-  onSuccess?: (data: TrendResponse) => void;
-  /** Callback when query fails */
-  onError?: (error: Error) => void;
 }
 
 /**
@@ -57,10 +48,8 @@ export function useTrends(options: UseTrendsOptions = {}): UseQueryResult<TrendR
     fromDate,
     toDate,
     enabled = true,
-    staleTime = 5 * 60 * 1000, // 5 minutes default
+    staleTime = 5 * 60 * 1000,
     retry = 3,
-    onSuccess,
-    onError,
   } = options;
 
   // Build query parameters object
@@ -80,8 +69,6 @@ export function useTrends(options: UseTrendsOptions = {}): UseQueryResult<TrendR
     retry,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
-    onSuccess,
-    onError,
   });
 }
 

@@ -9,9 +9,6 @@ import { es, enUS } from 'date-fns/locale';
 // Supported locales
 type LocaleType = 'es' | 'en';
 
-// Default locale (Spanish for Mexican market)
-const DEFAULT_LOCALE: LocaleType = 'es';
-
 /**
  * Get locale object for date-fns
  */
