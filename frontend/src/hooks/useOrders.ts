@@ -113,14 +113,10 @@ export function useOrders(
   );
   
   // Fetch orders query
-  const ordersQuery = useQuery({
+  const ordersQuery = useQuery<DistributionOrder[], Error>({
     queryKey: ordersQueryKey,
     queryFn: async () => {
-      // getOrders does not support pagination in the provided API, so we ignore page/limit here
-      // If backend supports pagination, pass pagination.page, pagination.limit
-      // For now, just fetch all and simulate pagination client-side
       const data = await getOrders(filters);
-      // Simulate headers for total count
       const total = data.length;
       const totalPages = Math.ceil(total / pagination.limit);
       setPagination(prev => ({
@@ -128,7 +124,6 @@ export function useOrders(
         total,
         totalPages,
       }));
-      // Simulate paginated data
       const start = (pagination.page - 1) * pagination.limit;
       const paginatedData = data.slice(start, start + pagination.limit);
       return paginatedData;

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -144,8 +144,9 @@ export default function TrendChart({
         cornerRadius: 8,
         displayColors: true,
         callbacks: {
-          label: function (context: { dataset: { label: string }; parsed: { y: number } }) {
-            return `${context.dataset.label}: ${context.parsed.y} órdenes`;
+          label: function (context) {
+            const label = context.dataset.label || '';
+            return `${label}: ${context.parsed.y} órdenes`;
           },
         },
       },

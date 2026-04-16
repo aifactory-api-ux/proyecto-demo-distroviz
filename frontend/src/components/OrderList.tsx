@@ -23,7 +23,6 @@ const STATUS_COLORS: Record<string, string> = {
 
 interface OrderListProps {
   onEdit?: (order: DistributionOrder) => void;
-  onCreate?: () => void;
 }
 
 /**
