@@ -11,15 +11,15 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
-from backend.app.crud import (
+from app.crud import (
     create_order,
     delete_order,
     get_order_by_id,
     get_orders,
     update_order,
 )
-from backend.app.dependencies import get_db
-from backend.app.models import (
+from app.dependencies import get_db
+from app.models import (
     DistributionOrder,
     DistributionOrderCreate,
     SuccessResponse,

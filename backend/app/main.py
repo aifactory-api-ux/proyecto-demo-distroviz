@@ -12,9 +12,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.app.api import orders_router, metrics_router, trends_router
-from backend.app.crud import seed_initial_data
-from backend.app.db import SessionLocal, init_db
-from backend.app.models import HealthResponse
+from app.crud import seed_initial_data
+from app.db import SessionLocal, init_db
+from app.models import HealthResponse
 
 # Configure logging
 logging.basicConfig(

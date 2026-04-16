@@ -7,8 +7,8 @@ This package contains the API route handlers organized by domain:
 - trends: Trend data aggregation
 """
 
-from backend.app.api.orders import router as orders_router
-from backend.app.api.metrics import router as metrics_router
-from backend.app.api.trends import router as trends_router
+from app.api.orders import router as orders_router
+from app.api.metrics import router as metrics_router
+from app.api.trends import router as trends_router
 
 __all__ = ["orders_router", "metrics_router", "trends_router"]
