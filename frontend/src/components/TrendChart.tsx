@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
   Filler,
+  TooltipItem,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { TrendResponse } from '../types';
@@ -144,7 +145,7 @@ export default function TrendChart({
         cornerRadius: 8,
         displayColors: true,
         callbacks: {
-          label: function (context) {
+          label: function (context: TooltipItem<'line'>) {
             const label = context.dataset.label || '';
             return `${label}: ${context.parsed.y} órdenes`;
           },

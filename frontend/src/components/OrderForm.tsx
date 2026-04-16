@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createOrder } from '../api/orders';
 import { DistributionOrderCreate } from '../types';
-import { formatDate } from '../utils/date';
 
 /**
  * OrderForm Component - Create/Edit distribution order form

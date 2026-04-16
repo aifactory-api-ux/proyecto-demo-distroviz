@@ -36,7 +36,7 @@ interface OrderListProps {
  * - Loading and error states
  * - Responsive table design
  */
-export default function OrderList({ onEdit, onCreate }: OrderListProps) {
+export default function OrderList({ onEdit }: OrderListProps) {
   const queryClient = useQueryClient();
   
   // Filter state
