@@ -8,34 +8,36 @@ export interface TrendResponse {
   trend: TrendPoint[];
 }
 
-// Added interfaces from SPEC.md §2
-
 export interface DistributionOrder {
   id: number;
-  recipient: string;
-  address: string;
-  items: string[];
-  status: 'pending' | 'delivered';
-  created_at: string;
-  delivered_at?: string | null;
+  order_number: string;
+  product_name: string;
+  quantity: number;
+  destination: string;
+  status: string;
+  shipped_at: string | null;
+  delivered_at: string | null;
 }
 
 export interface DistributionOrderCreate {
-  recipient: string;
-  address: string;
-  items: string[];
+  order_number: string;
+  product_name: string;
+  quantity: number;
+  destination: string;
+  status: string;
+  shipped_at?: string | null;
+  delivered_at?: string | null;
 }
 
 export interface DistributionOrderFilter {
-  status?: 'pending' | 'delivered';
-  recipient?: string;
-  date_from?: string;
-  date_to?: string;
+  from_date?: string;
+  to_date?: string;
+  status?: string;
 }
 
 export interface Metric {
   total_orders: number;
+  total_quantity: number;
   delivered_orders: number;
   pending_orders: number;
-  delivery_rate: number;
 }

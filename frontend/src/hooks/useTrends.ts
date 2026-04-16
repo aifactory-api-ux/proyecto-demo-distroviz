@@ -5,7 +5,7 @@
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { TrendResponse, TrendPoint } from '../types';
-import { getTrends, GetTrendsParams } from '../api/trends';
+import { getTrends } from '../api/trends';
 
 /**
  * Query key factory for trend-related queries
