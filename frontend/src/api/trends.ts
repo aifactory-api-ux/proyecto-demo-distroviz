@@ -2,18 +2,15 @@
  * Trends API Client for DistroViz
  * 
  * Provides functions to fetch trend data from the backend API.
- * Uses React Query for data fetching and caching.
  */
 
 import axios from 'axios';
 import { TrendResponse } from '../types';
 
-// Get API URL from environment variables (Vite-specific)
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-// Create axios instance with default configuration
 const apiClient = axios.create({
-  baseURL: API_URL,
+  baseURL: `${API_BASE_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -72,7 +69,7 @@ export interface TrendQueryParams {
  */
 export async function getTrends(params?: TrendQueryParams): Promise<TrendResponse> {
   try {
-    const response = await apiClient.get<TrendResponse>('/api/trends', {
+    const response = await apiClient.get<TrendResponse>('/trends', {
       params: params,
     });
     return response.data;

@@ -60,7 +60,7 @@ export async function getMetricsByDateRange(
     if (toDate) params.append('to_date', toDate);
 
     const queryString = params.toString();
-    const url = queryString ? `/api/metrics?${queryString}` : '/api/metrics';
+    const url = queryString ? `/metrics?${queryString}` : '/metrics';
     
     const response = await apiClient.get<Metric>(url);
     return response.data;
@@ -86,7 +86,7 @@ export async function getMetricsByDateRange(
  */
 export async function getMetricsByStatus(status: string): Promise<Metric> {
   try {
-    const response = await apiClient.get<Metric>(`/api/metrics?status=${encodeURIComponent(status)}`);
+    const response = await apiClient.get<Metric>(`/metrics?status=${encodeURIComponent(status)}`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -109,7 +109,7 @@ export async function getMetricsByStatus(status: string): Promise<Metric> {
  */
 export async function checkMetricsApiHealth(): Promise<boolean> {
   try {
-    await apiClient.get('/api/metrics', { timeout: 5000 });
+    await apiClient.get('/metrics', { timeout: 5000 });
     return true;
   } catch {
     return false;
